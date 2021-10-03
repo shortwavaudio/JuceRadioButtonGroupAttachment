@@ -57,13 +57,6 @@ public:
 private:
     static juce::AudioProcessorValueTreeState::ParameterLayout createParams();
     
-//    juce::StringArray channelLabels = {
-//        "clean",
-//        "crunch",
-//        "rhythm",
-//        "lead"
-//    };
-    
     int getChannelId();
 
     //==============================================================================

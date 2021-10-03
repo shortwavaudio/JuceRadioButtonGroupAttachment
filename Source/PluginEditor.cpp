@@ -17,8 +17,6 @@ RadioButtonGroupAudioProcessorEditor::RadioButtonGroupAudioProcessorEditor (Radi
     // Make sure that before the constructor has finished, you've set the
     // editor's size to whatever you need it to be.
     createChannelSelector(&Channels);
-//    myAttachment = std::make_unique<RadioButtonAttachment>(audioProcessor.state.getParameter("CHANNEL"), Channels, "ChannelSelector", 42);
-//    myAttachment = std::make_unique<RadioButtonAttachment>(audioProcessor.state.getParameter("CHANNEL"), Channels, "CHANNEL", 42, nullptr);
     channelAttachment = std::make_unique<RadioButtonGroupAttachment>(audioProcessor.state, "CHANNEL", Channels);
 
     setSize (640, 480);
@@ -33,13 +31,6 @@ void RadioButtonGroupAudioProcessorEditor::paint (juce::Graphics& g)
 {
     // (Our component is opaque, so we must completely fill the background with a solid colour)
     g.fillAll (getLookAndFeel().findColour (juce::ResizableWindow::backgroundColourId));
-//
-//    g.setColour (juce::Colours::white);
-//    g.setFont (15.0f);
-//    g.drawFittedText ((juce::String)audioProcessor.state.getRawParameterValue("CHANNEL")->load(), getLocalBounds(), juce::Justification::centred, 1);
-//    std::cout << "PAINT: " << audioProcessor.state.getRawParameterValue("CHANNEL")->load() << std::endl;
-//    int channelIdx = audioProcessor.state.getRawParameterValue("CHANNEL")->load() - 1;
-//    g.drawFittedText ((juce::String)audioProcessor.state.getRawParameterValue("CHANNEL")->load(), getLocalBounds(), juce::Justification::centred, 1);
 }
 
 void RadioButtonGroupAudioProcessorEditor::resized()
@@ -60,9 +51,8 @@ void RadioButtonGroupAudioProcessorEditor::createChannelSelector(juce::OwnedArra
         
         
         b->setButtonText(channelLabels[i]);
-        b->setRadioGroupId(42);
+        b->setRadioGroupId(1);
         b->setClickingTogglesState(true);
-//        b->setColour(juce::TextButton::buttonColourId, highlightColor);
         
         switch (i) {
             case 0:
@@ -86,7 +76,6 @@ void RadioButtonGroupAudioProcessorEditor::createChannelSelector(juce::OwnedArra
         }
         
         addAndMakeVisible(b);
-//        attachments[i] = std::make_unique<juce::AudioProcessorValueTreeState::ButtonAttachment>(audioProcessor.state, "CHANNEL", *b);
         
         channels->add(b);
     }

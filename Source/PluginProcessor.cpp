@@ -204,10 +204,7 @@ juce::AudioProcessorValueTreeState::ParameterLayout RadioButtonGroupAudioProcess
         "lead"
     };
     
-//    layout.add(std::make_unique<juce::AudioParameterChoice>("CHANNEL", "Channel", channelLabels, 1));
-    
-//    layout.add(std::make_unique<juce::AudioParameterInt>("CAB", "Cab", 1, 2, 1));
-    layout.add(std::make_unique<juce::AudioParameterInt>("CHANNEL", "Channel", 1, 4, 1));
+    layout.add(std::make_unique<juce::AudioParameterInt>("CHANNEL", "Channel", 0, 3, 0));
     
     return layout;
 }

@@ -19,7 +19,7 @@ RadioButtonGroupAttachment::RadioButtonGroupAttachment(juce::AudioProcessorValue
         juce::TextButton* button = b.getUnchecked (i);
         button->addListener(this);
         
-        if(defaultSelection == i + 1)
+        if(defaultSelection == i)
             button->setToggleState(true, juce::dontSendNotification);
         
         buttons.add(button);
@@ -41,7 +41,7 @@ void RadioButtonGroupAttachment::buttonClicked(juce::Button *b)
 {
     for (int i= 0; i< buttons.size(); i++) {
         if (b == buttons.getUnchecked(i) && b->getToggleState()) {
-            attachment.setValueAsCompleteGesture(i + 1);
+            attachment.setValueAsCompleteGesture(i);
         }
     }
 }

@@ -4,10 +4,12 @@
               addUsingNamespaceToJuceHeader="0" displaySplashScreen="1" jucerFormatVersion="1">
   <MAINGROUP id="UMYgrs" name="RadioButtonGroup">
     <GROUP id="{561EB4F9-3307-9BD6-A7AC-D6691AD95EC2}" name="Source">
-      <FILE id="Fird7s" name="RadioButtonGroupAttachment.cpp" compile="1"
-            resource="0" file="Source/RadioButtonGroupAttachment.cpp"/>
-      <FILE id="zFTZJw" name="RadioButtonGroupAttachment.h" compile="0" resource="0"
-            file="Source/RadioButtonGroupAttachment.h"/>
+      <GROUP id="{D04DBDBD-EFD0-0852-9E7B-4E3C500A35E3}" name="include">
+        <FILE id="I2YMub" name="RadioButtonGroupAttachment.cpp" compile="1"
+              resource="0" file="Source/include/RadioButtonGroupAttachment.cpp"/>
+        <FILE id="oOLsbz" name="RadioButtonGroupAttachment.h" compile="0" resource="0"
+              file="Source/include/RadioButtonGroupAttachment.h"/>
+      </GROUP>
       <FILE id="oGbwZP" name="PluginProcessor.cpp" compile="1" resource="0"
             file="Source/PluginProcessor.cpp"/>
       <FILE id="mOarXC" name="PluginProcessor.h" compile="0" resource="0"

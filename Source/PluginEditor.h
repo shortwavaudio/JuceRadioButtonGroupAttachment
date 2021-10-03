@@ -10,8 +10,7 @@
 
 #include <JuceHeader.h>
 #include "PluginProcessor.h"
-//#include "ff_gui_attachments.h"
-#include "RadioButtonGroupAttachment.h"
+#include "include/RadioButtonGroupAttachment.h"
 
 //==============================================================================
 /**
@@ -40,12 +39,8 @@ private:
 
     juce::OwnedArray<juce::TextButton> Channels;
     void createChannelSelector(juce::OwnedArray<juce::TextButton>*);
-    
-//    std::unique_ptr<juce::AudioProcessorValueTreeState::ButtonAttachment> attachments[4];
-//    std::unique_ptr<RadioButtonAttachment> myAttachment;
+
     std::unique_ptr<RadioButtonGroupAttachment> channelAttachment;
-    
-//    juce::Label channelLbl;
     
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (RadioButtonGroupAudioProcessorEditor)
 };
