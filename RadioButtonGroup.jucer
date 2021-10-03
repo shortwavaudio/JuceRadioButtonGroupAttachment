@@ -5,8 +5,6 @@
   <MAINGROUP id="UMYgrs" name="RadioButtonGroup">
     <GROUP id="{561EB4F9-3307-9BD6-A7AC-D6691AD95EC2}" name="Source">
       <GROUP id="{D04DBDBD-EFD0-0852-9E7B-4E3C500A35E3}" name="include">
-        <FILE id="I2YMub" name="RadioButtonGroupAttachment.cpp" compile="1"
-              resource="0" file="Source/include/RadioButtonGroupAttachment.cpp"/>
         <FILE id="oOLsbz" name="RadioButtonGroupAttachment.h" compile="0" resource="0"
               file="Source/include/RadioButtonGroupAttachment.h"/>
       </GROUP>

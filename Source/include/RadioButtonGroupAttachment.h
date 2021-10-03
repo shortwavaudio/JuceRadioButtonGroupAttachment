@@ -9,21 +9,50 @@
 */
 
 #pragma once
-
 #include <JuceHeader.h>
-
-/*To implement a new attachment type, create a new class which includes an instance of this class as a data member. Your class should pass a function to the constructor of the ParameterAttachment, which will then be called on the message thread when the parameter changes. You can use this function to update the state of the UI control. Your class should also register as a listener of the UI control and respond to changes in the UI element by calling either setValueAsCompleteGesture or beginGesture, setValueAsPartOfGesture and endGesture.
-
-Make sure to call sendInitialUpdate at the end of your new attachment's constructor, so that the UI immediately reflects the state of the parameter.*/
 
 class RadioButtonGroupAttachment : public juce::Button::Listener
 {
 public:
-    RadioButtonGroupAttachment (juce::AudioProcessorValueTreeState& s, juce::String parameterID, juce::OwnedArray<juce::TextButton>& b);
-    ~RadioButtonGroupAttachment ();
+    RadioButtonGroupAttachment (juce::AudioProcessorValueTreeState& s, juce::String parameterID, juce::OwnedArray<juce::TextButton>& b)  : attachment(*s.getParameter(parameterID), [this] (float newValue) { onValueChanged(newValue); })
+    {
+        int defaultSelection = s.getRawParameterValue(parameterID)->load();
+        
+        for(int i = 0; i < b.size(); ++i)
+        {
+            juce::TextButton* button = b.getUnchecked (i);
+            button->addListener(this);
+            
+            if(defaultSelection == i)
+                button->setToggleState(true, juce::dontSendNotification);
+            
+            buttons.add(button);
+        }
+        
+        attachment.sendInitialUpdate();
+    }
+
+    ~RadioButtonGroupAttachment ()
+    {
+        for(int i = 0; i < buttons.size(); ++i)
+        {
+            juce::TextButton* button = buttons.getUnchecked (i);
+            button->removeListener(this);
+        }
+    }
 private:
-    void buttonClicked (juce::Button* b) override;
-    void onValueChanged(float& v);
+    void buttonClicked (juce::Button* b) override
+    {
+        for (int i= 0; i< buttons.size(); i++) {
+            if (b == buttons.getUnchecked(i) && b->getToggleState()) {
+                attachment.setValueAsCompleteGesture(i);
+            }
+        }
+    }
+
+    void onValueChanged(float& v)
+    {
+    }
 
     juce::Array<juce::Component::SafePointer<juce::TextButton>> buttons;
     juce::ParameterAttachment attachment;
